@@ -1921,10 +1921,40 @@ class Solution:
             backtrace(nums, [])
             print (result)
             return result
+
+# Other approach
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        if isinstance(nums, list):
+            print ('nums ',nums)
+            if len(nums)==0:
+                return
+            
+            if len(nums)==1:
+                return [nums]
+            
+            result = []
+            
+            def backtrace(num, arr):
+                if len(num)==0:
+                    if arr not in result:
+                        result.append(arr[:])
                 
+                for i, val in enumerate(num):
+                    val = num.pop(i)
+                    arr.append(val)
+                    backtrace(num,arr)
+                    arr.pop()
+                    num.insert(i,val)
+            
+            backtrace(nums,[])
+            return result
+                	       
+	       
 34. Combination Sum 
 https://leetcode.com/problems/combination-sum/
-Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), find all unique combinations in candidates where the candidate numbers sums to target.
+Given a set of candidate numbers (candidates) (without duplicates) and a target number (target), 
+find all unique combinations in candidates where the candidate numbers sums to target.
 
 The same repeated number may be chosen from candidates unlimited number of times.
 
