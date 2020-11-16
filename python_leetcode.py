@@ -1,7 +1,8 @@
 Python Leetcode Interview Questions
 
 1. https://leetcode.com/problems/nim-game/
-You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.
+You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. 
+The one who removes the last stone will be the winner. You will take the first turn to remove the stones.
 
 Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.
 
@@ -18,9 +19,14 @@ You can always win a Nim game if the number of stones nn in the pile is not divi
 
 Reasoning
 
-Let us think of the small cases. It is clear that if there are only one, two, or three stones in the pile, and it is your turn, you can win the game by taking all of them. Like the problem description says, if there are exactly four stones in the pile, you will lose. Because no matter how many you take, you will leave some stones behind for your opponent to take and win the game. So in order to win, you have to ensure that you never reach the situation where there are exactly four stones on the pile on your turn.
+Let us think of the small cases. It is clear that if there are only one, two, or three stones in the pile, and it is your turn, you can win the game by taking all of them. 
+Like the problem description says, if there are exactly four stones in the pile, you will lose. 
+Because no matter how many you take, you will leave some stones behind for your opponent to take and win the game. 
+So in order to win, you have to ensure that you never reach the situation where there are exactly four stones on the pile on your turn.
 
-Similarly, if there are five, six, or seven stones you can win by taking just enough to leave four stones for your opponent so that they lose. But if there are eight stones on the pile, you will inevitably lose, because regardless whether you pick one, two or three stones from the pile, your opponent can pick three, two or one stone to ensure that, again, four stones will be left to you on your turn.
+Similarly, if there are five, six, or seven stones you can win by taking just enough to leave four stones for your opponent so that they lose. 
+But if there are eight stones on the pile, you will inevitably lose, because regardless whether you pick one, two or three stones from the pile, 
+your opponent can pick three, two or one stone to ensure that, again, four stones will be left to you on your turn.
 
 It is obvious that the same pattern repeats itself for n=4,8,12,16,\dotsn=4,8,12,16,…, basically all multiples of 44.
 
@@ -107,18 +113,21 @@ ValueError: invalid literal for int() with base 10: '5.0'
 5. String to Integer (atoi)
 Implement atoi which converts a string to an integer.
 
-The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
+The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. 
+Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
 
 The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.
 
-If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
+If the first sequence of non-whitespace characters in str is not a valid integral number, or 
+if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
 
 If no valid conversion could be performed, a zero value is returned.
 
 Note:
 
 Only the space character ' ' is considered as whitespace character.
-Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned.
+Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. 
+If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned.
 Example 1:
 
 Input: "42"
@@ -1198,7 +1207,8 @@ class Solution:
 22. Continuous Subarray Sum
 https://leetcode.com/problems/continuous-subarray-sum/
 
-Given a list of non-negative numbers and a target integer k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to a multiple of k, that is, sums up to n*k where n is also an integer.
+Given a list of non-negative numbers and a target integer k, 
+write a function to check if the array has a continuous subarray of size at least 2 that sums up to a multiple of k, that is, sums up to n*k where n is also an integer.
 
 Example 1:
 Input: [23, 2, 4, 6, 7],  k=6
@@ -1333,7 +1343,9 @@ class Solution:
 24. Container With Most Water
 https://leetcode.com/problems/container-with-most-water/
 
-Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). 
+n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). 
+Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 
 Note: You may not slant the container and n is at least 2.
 
@@ -1354,7 +1366,8 @@ We initialize them to first and last line, meaning the widest container.
 Variable water will keep track of the highest amount of water we managed so far. 
 We compute j - i, the width of the current container, and min(height[i], height[j]), the water level that this container can support. 
 Multiply them to get how much water this container can hold, and update water accordingly. 
-Next remove the smaller one of the two lines from consideration, as justified above in "Idea / Proof". Continue until there is nothing left to consider, then return the result.
+Next remove the smaller one of the two lines from consideration, as justified above in "Idea / Proof". 
+Continue until there is nothing left to consider, then return the result.
 
 
 class Solution:
@@ -1373,9 +1386,8 @@ class Solution:
 25. 3Sum Closest
 https://leetcode.com/problems/3sum-closest/
 
-Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
-
- 
+Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. 
+Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
 Example 1:
 
@@ -1422,7 +1434,8 @@ Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 26. 4Sum
 https://leetcode.com/problems/4sum/
 
-Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such that a + b + c + d = target? 
+Find all unique quadruplets in the array which gives the sum of target.
 
 Note:
 
@@ -1441,19 +1454,24 @@ A solution set is:
 
 Ans.
 
-This problem is a follow-up of 3Sum, so take a look at that problem first if you haven't. 4Sum and 3Sum are very similar; the difference is that we are looking for unique quadruplets instead of triplets.
+This problem is a follow-up of 3Sum, so take a look at that problem first if you haven't. 4Sum and 3Sum are very similar; 
+the difference is that we are looking for unique quadruplets instead of triplets.
 
 As you see, 3Sum just wraps Two Sum in an outer loop. As it iterates through each value v, it finds all pairs whose sum is equal to target - v using one of these approaches:
 
 Two Sum uses a hash set to check for a matching value.
 Two Sum II uses the two pointers pattern in a sorted array.
-Following a similar logic, we can implement 4Sum by wrapping 3Sum in another loop. But wait - there is a catch. If an interviewer asks you to solve 4Sum, they can follow-up with 5Sum, 6Sum, and so on. What they are really expecting at this point is a kSum solution. Therefore, we will focus on a generalized implementation here.
+Following a similar logic, we can implement 4Sum by wrapping 3Sum in another loop. But wait - there is a catch. 
+If an interviewer asks you to solve 4Sum, they can follow-up with 5Sum, 6Sum, and so on. 
+What they are really expecting at this point is a kSum solution. Therefore, we will focus on a generalized implementation here.
 
 
 Approach-
-The two pointers pattern requires the array to be sorted, so we do that first. Also, it's easier to deal with duplicates if the array is sorted: repeated values are next to each other and easy to skip.
+The two pointers pattern requires the array to be sorted, so we do that first. 
+Also, it's easier to deal with duplicates if the array is sorted: repeated values are next to each other and easy to skip.
 
-For 3Sum, we enumerate each value in a single loop, and use the two pointers pattern for the rest of the array. For kSum, we will have k - 2 nested loops to enumerate all combinations of k - 2 values.
+For 3Sum, we enumerate each value in a single loop, and use the two pointers pattern for the rest of the array. 
+For kSum, we will have k - 2 nested loops to enumerate all combinations of k - 2 values.
 
 Algorithm
 
@@ -1464,7 +1482,8 @@ For the main function:
 	Call kSum with start = 0, k = 4, and target, and return the result.
 
 For kSum function:
-	Check if the sum of k smallest values is greater than target, or the sum of k largest values is smaller than target. Since the array is sorted, the smallest value is nums[start], and largest - the last element in nums.
+	Check if the sum of k smallest values is greater than target, or the sum of k largest values is smaller than target. 
+	Since the array is sorted, the smallest value is nums[start], and largest - the last element in nums.
 		If so, no need to continue - there are no k elements that sum to target.
 	If k equals 2, call twoSum and return the result.
 	Iterate i through the array from start:
