@@ -1,0 +1,299 @@
+1. Remove All Adjacent Duplicates In String
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+
+Given a string S of lowercase letters, a duplicate removal consists of choosing two adjacent and equal letters, and removing them.
+
+We repeatedly make duplicate removals on S until we no longer can.
+
+Return the final string after all such duplicate removals have been made.  It is guaranteed the answer is unique.
+
+ 
+
+Example 1:
+
+Input: "abbaca"
+Output: "ca"
+Explanation: 
+For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.  The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".
+
+class Solution:
+    def removeDuplicates(self, S: str) -> str:
+        result = list()
+        result.append(S[0])
+        
+        for i in S[1:]:
+            # print (i, result[-1])
+            if len(result)>0 and i == result[-1]:
+                result.pop()
+            else:
+                result.append(i)
+        return ''.join(result)
+
+
+2. Make Two Arrays Equal by Reversing Sub-arrays
+https://leetcode.com/problems/make-two-arrays-equal-by-reversing-sub-arrays/
+
+Given two integer arrays of equal length target and arr.
+In one step, you can select any non-empty sub-array of arr and reverse it. You are allowed to make any number of steps.
+Return True if you can make arr equal to target, or False otherwise.
+
+Example 1:
+Input: target = [1,2,3,4], arr = [2,4,1,3]
+Output: true
+
+Example 2:
+Input: target = [7], arr = [7]
+Output: true
+
+class Solution:
+    def canBeEqual(self, target: List[int], arr: List[int]) -> bool:
+        
+        #approach1
+        return sorted(target)==sorted(arr)
+        
+        #approach2
+        dict1 = {}
+        dict2 = {}
+        
+        for i in target:
+            if i in dict1:
+                dict1[i]+=1
+            else:
+                dict1[i]=1
+        
+        for j in arr:
+            if j in dict2:
+                dict2[j]+=1
+            else:
+                dict2[j]=1
+        
+        return dict1==dict2
+
+
+3. Intersection of Three Sorted Arrays
+https://leetcode.com/problems/intersection-of-three-sorted-arrays/
+
+Given three integer arrays arr1, arr2 and arr3 sorted in strictly increasing order, return a sorted array of only the integers that appeared in all three arrays.
+
+Example 1:
+Input: arr1 = [1,2,3,4,5], arr2 = [1,2,5,7,9], arr3 = [1,3,4,5,8]
+Output: [1,5]
+Explanation: Only 1 and 5 appeared in the three arrays.
+
+
+Ans.
+class Solution:
+    def arraysIntersection(self, arr1: List[int], arr2: List[int], arr3: List[int]) -> List[int]:
+        set_a = set(arr1)
+        set_b = set(arr2)
+        set_c = set(arr3)
+        
+        set_d = set_a.intersection(set_b).intersection(set_c)
+        arr = [i for i in set_d]
+        arr.sort()
+        return arr
+
+
+4. Longest Common Prefix - IMP -
+https://leetcode.com/problems/longest-common-prefix/
+
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+
+Example 1:
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+
+Example 2:
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+
+Ans
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        
+        
+		#approach 1 my answer
+		''' 
+		#below we use zip unpack operator
+		#https://realpython.com/python-zip-function/#unzipping-a-sequence
+		
+        myarr = list(zip(*strs))
+        ans = ""
+        
+        for i in myarr:
+            print (i)
+            if len(set(i))>1:
+                break
+            ans+=i[0]
+        print (ans)
+        return ans
+		
+		'''
+        #Approach 1
+        '''
+        # zip unpacking of elements
+        
+            https://realpython.com/python-zip-function/#unzipping-a-sequence
+        
+        sz, ret = zip(*strs), ""
+        
+        print (sz)
+        # looping corrected based on @StefanPochmann's comment below
+        for c in sz:
+            print (c)
+            if len(set(c)) > 1: break
+            ret += c[0]
+        return ret
+        '''
+        
+        if not strs:
+            return ""
+        
+        min_str = min(strs)
+        max_str = max(strs)
+        if min_str==max_str:
+            return min_str
+        
+        print (min_str, max_str)
+        
+        for i,val in enumerate(min_str):
+            
+            print (i, min_str[:i+1], max_str[:i+1] )
+            if min_str[i]!=max_str[i]:
+                return min_str[:i]
+            
+
+5. Two Sum
+			
+
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+Example 1:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Output: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+Example 2:
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+
+Example 3:
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+Ans.
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        if isinstance(nums,list) and isinstance(target,int) and len(nums)>0:
+            
+            mydict={}
+            
+            for i,val in enumerate(nums):
+                j = target-val
+                if j in mydict:
+                    return [i,mydict[j] ]
+                else:
+                    mydict[val]=i
+            
+6. Palindrome Number
+https://leetcode.com/problems/palindrome-number/
+
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+Follow up: Could you solve it without converting the integer to a string?
+
+Example 1:
+Input: x = 121
+Output: true
+
+Example 2:
+Input: x = -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+
+Example 3:
+Input: x = 10
+Output: false
+Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+
+Example 4:
+Input: x = -101
+Output: false
+
+Ans.
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if isinstance(x, int):
+            if x<0 or x==float(inf) or x<pow(-2,31) or x>=pow(2,31):
+                return False
+            
+            reverse_ = 0
+            val = abs(x)
+            
+            while val:
+                print (reverse_)
+                reverse_ = reverse_*10 + val%10
+                val=int(val/10)
+            
+            print (val,reverse_)
+            
+            if x==reverse_:
+                return True
+            else:
+                return False
+
+7. Reverse Integer
+https://leetcode.com/problems/reverse-integer/
+
+Given a 32-bit signed integer, reverse digits of an integer.
+
+Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+
+Example 1:
+Input: x = 123
+Output: 321
+
+Example 2:
+Input: x = -123
+Output: -321
+
+Example 3:
+Input: x = 120
+Output: 21
+
+Ans.
+class Solution:
+    def reverse(self, x: int) -> int:
+        if isinstance(x,int):
+            print (x)
+
+            sign_=1
+            if x<0:
+                sign_ = -1
+            
+            x=abs(x)
+            
+
+            Approach 1:
+            
+            x_ = str(x)
+            val_ = sign_*int(x_[::-1])
+            if (val_<pow(-2,31) ) or (val_>(pow(2,31)-1) ) or (val_==0):
+                return 0
+            else:
+                return val_
+            
+            
+            #approach 2
+            sum_val = 0
+            while x:
+                print (sum_val, x)
+                sum_val =  sum_val*10 + x%10
+                x=int(x/10)
+                
+            return 0 if sum_val>=pow(2,31) else sum_val*sign_
+
+9. 
